@@ -32,7 +32,7 @@ public class AnswerHandler implements RequestStreamHandler {
 
 
         //TODO there must be a more elegant way of doing this
-        
+
         Map<String, Object> map = mapper.readValue(qsp.toString(), new TypeReference<Map<String,Object>>(){});
         Object idObject = map.get("id");
         int id = 0;
