@@ -2,11 +2,11 @@ package io.kemper;
 
 import org.junit.Test;
 
-public class RiddleHandlerTest {
+public class GetRiddleHandlerTest {
 
 	@Test
 	public void test() {
-		RiddleHandler rh = new RiddleHandler();
+		GetRiddleHandler rh = new GetRiddleHandler();
 		String input = "ALLO WORLD";
 		//assertEquals(new Riddle("what is aws lambda?"), rh.handleRequest(null, new TestContext()));
 	}

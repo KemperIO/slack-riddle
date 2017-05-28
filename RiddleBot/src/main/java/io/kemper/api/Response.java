@@ -2,6 +2,9 @@ package io.kemper.api;
 
 import java.util.Map;
 
+/**
+ * HTTP Response
+ */
 public class Response {
     private String body;
     private int statusCode;
