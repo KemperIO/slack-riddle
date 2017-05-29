@@ -4,10 +4,7 @@ import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.kemper.api.Action;
-import io.kemper.api.Attachment;
-import io.kemper.api.Response;
-import io.kemper.api.SlackResponse;
+import io.kemper.api.*;
 import io.kemper.domain.Riddle;
 import io.kemper.service.RiddleService;
 
@@ -31,7 +28,7 @@ public class GetRiddleHandler implements RequestHandler<Map<String, Object>, Res
         Attachment getRiddleAttachment = new Attachment("...", "Unable to get answer", "mycallbackid", "#00FF00", "default", actions);
         List<Attachment> attachments = new ArrayList<>();
         attachments.add(getRiddleAttachment);
-        SlackResponse slackResponse = new SlackResponse(riddle.getQuestion(), attachments);
+        SlackResponse slackResponse = new SlackResponse(ResponseType.in_channel, riddle.getQuestion(), attachments);
 
         String body = marshall(slackResponse);
 
