@@ -9,7 +9,11 @@ import io.kemper.api.MessageActionRequest;
 import io.kemper.api.Response;
 import io.kemper.service.RiddleService;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+
 import java.io.IOException;
+import java.util.List;
 
 public class GetAnswerHandler  implements RequestHandler<LambdaProxyRequest, Response> {
 
@@ -23,6 +27,12 @@ public class GetAnswerHandler  implements RequestHandler<LambdaProxyRequest, Res
     }
 
     public static MessageActionRequest unmarshall(String body) {
+        try {
+            body = URLDecoder.decode(body, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        body = body.replace("payload=", "");
         ObjectMapper mapper = new ObjectMapper();
         try {
             return mapper.readValue(body, MessageActionRequest.class);
