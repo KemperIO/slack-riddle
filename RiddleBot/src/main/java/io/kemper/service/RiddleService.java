@@ -16,8 +16,8 @@ public class RiddleService {
 
         this.riddles = new ArrayList<>();
         this.riddles.add(new Riddle(0, "what is AWS lambda?", "AWSome!!!"));
-        this.riddles.add(new Riddle(0, "Riddle 1", "Answer 1"));
-        this.riddles.add(new Riddle(0, "Riddle 2", "Answer 2"));
+        this.riddles.add(new Riddle(1, "Riddle 1", "Answer 1"));
+        this.riddles.add(new Riddle(2, "Riddle 2", "Answer 2"));
     }
 
     public Riddle getRandomRiddle() {
