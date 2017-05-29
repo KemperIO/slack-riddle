@@ -1,7 +1,10 @@
 package io.kemper.api;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.List;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class MessageActionRequest {
     private List<Action> actions;
 

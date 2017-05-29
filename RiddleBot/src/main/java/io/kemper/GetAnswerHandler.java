@@ -4,23 +4,32 @@ import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.kemper.api.LambdaProxyRequest;
 import io.kemper.api.MessageActionRequest;
 import io.kemper.api.Response;
 import io.kemper.service.RiddleService;
 
-public class GetAnswerHandler  implements RequestHandler<MessageActionRequest, Response> {
+import java.io.IOException;
+
+public class GetAnswerHandler  implements RequestHandler<LambdaProxyRequest, Response> {
 
     @Override
-    public Response handleRequest(MessageActionRequest request, Context context) {
-
-        System.out.println(request);
-        //System.out.println("Id: " +  request.getActions().get(0).getValue());
-
-        String answer = new RiddleService().getAnswer(0);
-
+    public Response handleRequest(LambdaProxyRequest request, Context context) {
+        MessageActionRequest messageActionRequest = unmarshall(request.body);
+        int id = Integer.parseInt(messageActionRequest.getActions().get(0).getValue());
+        String answer = new RiddleService().getAnswer(id);
         Response response = new Response(answer, 200);
-        System.out.println(response);
         return response;
+    }
+
+    public static MessageActionRequest unmarshall(String body) {
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            return mapper.readValue(body, MessageActionRequest.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
 
