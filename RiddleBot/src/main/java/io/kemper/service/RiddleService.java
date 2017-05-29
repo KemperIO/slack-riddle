@@ -25,7 +25,7 @@ public class RiddleService {
         return riddles.get(id);
     }
 
-    public String getAnswer(Integer id) {
-        return riddles.get(id).getAnswer();
+    public Riddle getRiddle(Integer id) {
+        return riddles.get(id);
     }
 }

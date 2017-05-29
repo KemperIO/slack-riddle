@@ -1,11 +1,16 @@
 package io.kemper.api;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 
 /**
  * TODO: Format response for Slack bot to consume
  */
 public class SlackResponse {
+
+    @JsonProperty("response_type")
+    private ResponseType responseType;
     private String text;
     private List<Attachment> attachments;
 
@@ -18,6 +23,20 @@ public class SlackResponse {
     public SlackResponse(String text, List<Attachment> attachments) {
         this.text = text;
         this.attachments = attachments;
+    }
+
+    public SlackResponse(ResponseType responseType, String text, List<Attachment> attachments) {
+        this.responseType = responseType;
+        this.text = text;
+        this.attachments = attachments;
+    }
+
+    public ResponseType getResponseType() {
+        return responseType;
+    }
+
+    public void setResponseType(ResponseType responseType) {
+        this.responseType = responseType;
     }
 
     public String getText() {
@@ -43,13 +62,15 @@ public class SlackResponse {
 
         SlackResponse that = (SlackResponse) o;
 
+        if (responseType != null ? !responseType.equals(that.responseType) : that.responseType != null) return false;
         if (text != null ? !text.equals(that.text) : that.text != null) return false;
         return attachments != null ? attachments.equals(that.attachments) : that.attachments == null;
     }
 
     @Override
     public int hashCode() {
-        int result = text != null ? text.hashCode() : 0;
+        int result = responseType != null ? responseType.hashCode() : 0;
+        result = 31 * result + (text != null ? text.hashCode() : 0);
         result = 31 * result + (attachments != null ? attachments.hashCode() : 0);
         return result;
     }
@@ -57,7 +78,8 @@ public class SlackResponse {
     @Override
     public String toString() {
         return "SlackResponse{" +
-                "text='" + text + '\'' +
+                "responseType='" + responseType + '\'' +
+                ", text='" + text + '\'' +
                 ", attachments=" + attachments +
                 '}';
     }
