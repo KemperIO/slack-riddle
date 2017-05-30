@@ -23,3 +23,6 @@ curlRiddle: ;
 curlAnswer:
 	./scripts/getAnswer.sh
 
+.PHONY: db
+db:
+	aws dynamodb batch-write-item --request-items file://db/data.json --profile tj
