@@ -4,8 +4,8 @@
       "PutRequest": {
         "Item": {
           "riddleId": {"S": "0"},
-          "question": {"S": "What is AWS Lambda?"},
-          "answer": {"S": "AWSome!"}
+          "question": {"S": "Why do programmers confuse Halloween and Christmas?"},
+          "answer": {"S": "Because Oct 31 == Dec 25\n\n'Oct' refers to October and Octal. 'Dec' refers to December and Decimal."}
         }
       }
     },
@@ -13,8 +13,8 @@
       "PutRequest": {
         "Item": {
           "riddleId": {"S": "1"},
-          "question": {"S": "Riddle 1"},
-          "answer": {"S": "Answer 1"}
+          "question": {"S": "Get all four people (A, B, C, D) over the bridge in 17 minutes.\nThe bridge is weak, so only 2 people can walk over at a time.\nIt's dark, so the pair needs the flashlight to cross.\n\nTime it takes for each person to walk over the bridge (pair has to stick together):\nA - 1 minute\nB - 2 minutes\nC - 5 minutes\nD - 10 minutes"},
+          "answer": {"S": "A B over (2 min)\nA   back (3 min)\nC D over (13 min)\nB   back (15 min)\nA B over (17 min)"}
         }
       }
     },
@@ -22,8 +22,62 @@
       "PutRequest": {
         "Item": {
           "riddleId": {"S": "2"},
-          "question": {"S": "Riddle 2"},
-          "answer": {"S": "Answer 2"}
+          "question": {"S": "You're standing somewhere on the surface of the earth. \nYou walk 1 mile south, 1 mile west, and then 1 mile north. \nYou end up exactly where you started. \nWhere are you? (2 correct answers: find both)"},
+          "answer": {"S": "Answer 1 (easy answer): the north pole.\nAnswer 2 (difficult answer): Somewhere near the south pole a mile above where the circumference of the earth is 1 mile."}
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "riddleId": {"S": "3"},
+          "question": {"S": "Can you place 8 queens on a chess board such that no queens attack each other?"},
+          "answer": {"S": "There are 92 distinct solutions.  Here is one:\n8 ║…  …  …  ♛  …  …  …  …\n7 ║…  …  …  …  …  …  ♛  …\n6 ║…  …  ♛  …  …  …  …  …\n5 ║…  …  …  …  …  …  …  ♛\n4 ║…  ♛  …  …  …  …  …  …\n3 ║…  …  …  …  ♛  …  …  …\n2 ║♛  …  …  …  …  …  …  …\n1 ║…  …  …  …  …  ♛  …  …\n—-╚═══════════════════════\n—— a  b  c  d  e  f  g  h"}
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "riddleId": {"S": "4"},
+          "question": {"S": "Alice and Bob each have a padlock and key. Alice also has a box (which can be locked).\nHow can Alice send a message to Bob securely?"},
+          "answer": {"S": "Alice locks the box with her padlock and sends it to Bob.\nBob puts his lock on as well and sends it back.\nAlice unlocks her padlock and again sends it to Bob.\nNow Bob can unlock his padlock and read the message!"}
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "riddleId": {"S": "5"},
+          "question": {"S": "How many times a day do clock hands overlap?"},
+          "answer": {"S": "22"}
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "riddleId": {"S": "6"},
+          "question": {"S": "There are 100 closed lockers.\nToggling a locker means opening it if it's closed or closing it if it's open.\nFirst toggle each locker. Then toggle every 2nd locker, then every 3rd, every 4th… through to 100.\nHow many lockers are open at the end? Why?"},
+          "answer": {"S": "10 lockers. All the square numbers."}
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "riddleId": {"S": "7"},
+          "question": {"S": "Move two match sticks to get the fly out of the wine glass.\nMust end up with a wine glass after moving the match sticks.\n\n|     |\n|  *  |\n|     |\n-------\n   |\n   |\n   |"},
+          "answer": {"S": "Start:\n\n|     |\n|  *  |\n|     |\n-------\n   |\n   |\n   |\n\nAfter move one:\n\n|     |\n|  *  |\n|     |\n   -------\n   |\n   |\n   |\n\nAfter move two:\n\n      |\n   *  |\n      |\n   -------\n   |     |\n   |     |\n   |     |"}
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "riddleId": {"S": "8"},
+          "question": {"S": "Two ropes burn an hour each. How can you measure:\na) 2 hours\nb) Hour and a half\nc) 45 min\n\nNote: the ropes have “uneven” burn rates throughout, i.e. we should not light it in the middle."},
+          "answer": {"S": "a) Burn one rope, then the other.\n\nb) Light both ends of one rope. When that burns out, light the other rope.\n\nc) Light both ends of one rope and one end of the other. When the first rope burns out, light the unlit end of the other rope."}
         }
       }
     }
