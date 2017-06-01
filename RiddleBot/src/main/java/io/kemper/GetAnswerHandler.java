@@ -8,6 +8,7 @@ import io.kemper.api.LambdaProxyRequest;
 import io.kemper.api.MessageActionRequest;
 import io.kemper.api.Response;
 import io.kemper.domain.Riddle;
+import io.kemper.service.DynamoRiddleService;
 import io.kemper.service.SimpleRiddleService;
 
 import java.io.IOException;
@@ -20,7 +21,7 @@ public class GetAnswerHandler  implements RequestHandler<LambdaProxyRequest, Res
     public Response handleRequest(LambdaProxyRequest request, Context context) {
         MessageActionRequest messageActionRequest = unmarshall(request.body);
         int id = Integer.parseInt(messageActionRequest.getActions().get(0).getValue());
-        Riddle riddle = new SimpleRiddleService().getRiddle(id);
+        Riddle riddle = DynamoRiddleService.getInstance().getRiddle(id);
 
         Response response = new Response(riddle.getQuestion() + "\n\n" + riddle.getAnswer(), 200);
         return response;
