@@ -6,7 +6,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.kemper.api.*;
 import io.kemper.domain.Riddle;
-import io.kemper.service.RiddleService;
+import io.kemper.service.SimpleRiddleService;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -29,7 +29,7 @@ public class GetRiddleHandler implements RequestHandler<LambdaProxyRequest, Resp
     }
 
     private Response getRiddle(String category) {
-        Riddle riddle = new RiddleService().getRandomRiddle();
+        Riddle riddle = new SimpleRiddleService().getRandomRiddle();
 
         Action getAnswerAction = new Action("answer", "Get Answer", "button", riddle.getId().toString());
         List<Action> actions = new ArrayList<>();
