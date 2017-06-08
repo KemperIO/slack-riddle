@@ -16,7 +16,7 @@ updateAsync: build
 # build
 .PHONY: build
 build:
-	mvn clean package
+	mvn clean package -DskipTests=true
 
 # test
 .PHONY: testInitial
