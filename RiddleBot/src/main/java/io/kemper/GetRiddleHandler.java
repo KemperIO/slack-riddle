@@ -2,23 +2,22 @@ package io.kemper;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.kemper.api.*;
 import io.kemper.domain.Riddle;
 import io.kemper.service.DynamoRiddleService;
-import io.kemper.service.SimpleRiddleService;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import static io.kemper.service.JSONService.marshall;
 
 public class GetRiddleHandler implements RequestHandler<LambdaProxyRequest, Response> {
 
     @Override
     public Response handleRequest(LambdaProxyRequest request, Context context) {
         context.getLogger().log("Input: " + request);
-        Map<String, String> requestBody = parseRequestBody(request.body);
+        Map<String, String> requestBody = request.parseRequestBody();
         System.out.println(requestBody);
 
         if("help".equals(requestBody.get("text"))) {
@@ -55,35 +54,8 @@ public class GetRiddleHandler implements RequestHandler<LambdaProxyRequest, Resp
         return response;
     }
 
-    public Map<String, String> parseRequestBody(String body) {
-        try {
-            body = URLDecoder.decode(body, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
 
-        Map<String, String> requestBody = new HashMap<>();
 
-        String[] keypairs = body.split("&");
-        for(String keypair : keypairs) {
-            String[] temp = keypair.split("=");
-            if(temp.length == 2) {
-                requestBody.put(temp[0], temp[1]);
-            }
-        }
 
-        return requestBody;
-    }
-
-    public static String marshall(Object obj) {
-        ObjectMapper mapper = new ObjectMapper();
-        String body = null;
-        try {
-            body = mapper.writeValueAsString(obj);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-        return body;
-    }
 
 }
