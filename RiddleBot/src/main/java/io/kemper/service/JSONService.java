@@ -18,9 +18,9 @@ public class JSONService {
         return body;
     }
 
-    public static Object unmarshall(String str, Class clazz) {
+    public static <T> T unmarshall(String str, Class<T> clazz) {
         ObjectMapper mapper = new ObjectMapper();
-        Object obj = null;
+        T obj = null;
         try {
             obj = mapper.readValue(str, clazz);
         } catch (IOException e) {
@@ -28,4 +28,6 @@ public class JSONService {
         }
         return obj;
     }
+
+
 }

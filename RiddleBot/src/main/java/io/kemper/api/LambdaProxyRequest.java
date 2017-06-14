@@ -91,7 +91,7 @@ public class LambdaProxyRequest {
         return o == null ? "null" : o.toString();
     }
 
-    public Map<String, String> parseRequestBody() {
+    public Map<String, String> parseBody() {
         String tempBody = null;
         try {
             tempBody = URLDecoder.decode(this.body, "UTF-8");

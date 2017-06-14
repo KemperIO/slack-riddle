@@ -3,6 +3,7 @@ package io.kemper;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import io.kemper.api.Response;
+import io.kemper.api.ResponseType;
 import io.kemper.api.SlackResponse;
 
 import java.util.Map;
@@ -19,7 +20,7 @@ public class InitialHandler implements RequestHandler<Map<String, Object>, Respo
         String message = marshall(request);
         publishMessage(message);
 
-        SlackResponse slackResponse = new SlackResponse("Ok, got it.");
+        SlackResponse slackResponse = new SlackResponse(ResponseType.ephemeral, "Ok, got it.");
         String body = marshall(slackResponse);
 
         Response response = new Response(body, 200);
