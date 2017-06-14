@@ -1,5 +1,8 @@
 package io.kemper.api;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.util.HashMap;
 import java.util.Map;
 
 public class LambdaProxyRequest {
@@ -86,6 +89,27 @@ public class LambdaProxyRequest {
 
     private String safeToString(Object o) {
         return o == null ? "null" : o.toString();
+    }
+
+    public Map<String, String> parseBody() {
+        String tempBody = null;
+        try {
+            tempBody = URLDecoder.decode(this.body, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        Map<String, String> requestBody = new HashMap<>();
+
+        String[] keypairs = tempBody.split("&");
+        for(String keypair : keypairs) {
+            String[] temp = keypair.split("=");
+            if(temp.length == 2) {
+                requestBody.put(temp[0], temp[1]);
+            }
+        }
+
+        return requestBody;
     }
 
 }

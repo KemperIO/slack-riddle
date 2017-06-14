@@ -25,6 +25,11 @@ public class SlackResponse {
         this.attachments = attachments;
     }
 
+    public SlackResponse(ResponseType responseType, String text) {
+        this.responseType = responseType;
+        this.text = text;
+    }
+
     public SlackResponse(ResponseType responseType, String text, List<Attachment> attachments) {
         this.responseType = responseType;
         this.text = text;

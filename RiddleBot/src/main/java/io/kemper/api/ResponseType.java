@@ -5,6 +5,7 @@ package io.kemper.api;
  *
  * ephemeral is default
  */
+//@JsonFormat(shape= JsonFormat.Shape.STRING)
 public enum ResponseType {
     in_channel, ephemeral
 }
